@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF ORT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .tittle {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .content-button{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            z-index: 1; /* Asegura que los botones estén encima del modal */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #pdfContainer {
+            display: none; /* Oculta el contenedor del PDF inicialmente */
+            position: relative;
+            width: 1000px; /* Limita el ancho del contenedor del modal */
+            height: 1200px; /* Ajusta el tamaño máximo del modal */
+            overflow: auto;
+        }
+
+        .pdf-modal {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            width:1000px;
+            height: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button.close-button {
+            align-self: flex-end;
+            margin-top: -10px; /* Ajuste para que el botón esté más cerca del borde */
+            padding: 5px 10px;
+            background-color: #ccc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button.close-button:hover {
+            background-color: #aaa;
+        }
+
+        object {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="tittle">ANEXOS</h1>
+
+    <div class="content-button">
+        <button onclick="mostrarPDF('C:\\Users\\Lenovo\\Desktop\\pdf\\AnexoH.pdf')">ANEXO H</button>
+        <button onclick="mostrarPDF('C:\\Users\\Lenovo\\Desktop\\pdf\\AnexoE.pdf')">ANEXO E</button>
+        <button onclick="mostrarPDF('')">Mostrar PDF 3</button>
+    </div>
+
+
+    <div id="pdfContainer">
+        <div class="pdf-modal">
+            <button class="close-button" onclick="cerrarPDF()">Cerrar</button>
+            <object id="pdfObject" data="" type="application/pdf"></object>
+        </div>
+    </div>
+
+    <script>
+        var pdfObject = document.getElementById('pdfObject');
+
+        function mostrarPDF(pdf) {
+            var pdfContainer = document.getElementById('pdfContainer');
+            pdfObject.setAttribute('data', pdf);
+            pdfContainer.style.display = 'flex'; // Mostrar el contenedor del PDF
+        }
+
+        function cerrarPDF() {
+            var pdfContainer = document.getElementById('pdfContainer');
+            pdfContainer.style.display = 'none'; // Ocultar el contenedor del PDF
+        }
+    </script>
+</body>
+</html>
